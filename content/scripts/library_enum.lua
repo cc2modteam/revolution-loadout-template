@@ -2138,7 +2138,7 @@ g_revolution_override_attachment_options = {
 		options = {
 			-- nose slot
 			[1] = {
-				e_game_object_type.camera_aircraft,
+				e_game_object_type.attachment_camera_plane,
 				e_game_object_type.attachment_turret_gimbal_30mm,
 			},
 			-- wings
