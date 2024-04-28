@@ -2087,10 +2087,54 @@ e_inventory_item = {
 }
 
 -- revolution settings
+-- set/unset these to change different aspects of the game
 
--- constants
+-- developer use only, show radar calcuations on operator screens
+g_radar_debug = false
 
+-- set to a number above 1 to expand radar ranges
+-- set below 1 to reduce needlefish radar ranges
+g_override_radar_multiplier = 1
+
+-- set true to hide the production type of hostile islands on the logistics map
+-- that are masked by the fog of war (ie they are too far away to see who controls it)
+g_revolution_hide_hostile_island_types = false
+
+-- set true to hide island shield (difficutly) numbers from the holomap and control screens.
+g_revolution_hide_island_difficulty = false
+
+-- RADAR boosts disabled by default
+-- set to an altitude above which the AWACS gets a range boost (above 2000 disables this)
+g_revolution_awacs_boost_above_alt = 9999
+
+-- set to a value used for the AWACS range boost (if enabled)
+-- 1.2 works out at a 20% boost to range at 2000m if above was set to 1600
+g_revolution_awacs_alt_boost_factor = 1.2
+
+-- set to true to enable the RADAR Cross Section modelling
+-- this can slightly reduce or increase the range aircraft show up on screens.
+-- I will probably remove support for this at some point in the future
+g_revolution_enable_rcs = false
+
+-- below this altitude, hide aircraft from operator screen RADAR display
+g_revolution_radar_clutter_level = 65
+
+-- render grey HUD circles around hot ground/air targets when you are equipped with an IR/AA/TV
+-- missile and the target is in front of you within this distance
+-- in revolution 1.2 this was 2500
+g_revolution_hud_missile_heat_circles = 1500
+
+-- render grey HUD circles around hot targets using this % of the middle of the HUD. Outside
+-- this region hot targets are not displayed
+-- in revolution 1.2 this was 0.3
+g_revolution_hud_missile_heat_scope = 0.25
+
+
+-- attachment hardpoint overrides
+
+-- useful constants to reduce typing later
 g_std_wing_attachments = {
+	-- the weapons all aircraft can normally mount on wing pylons
 	e_game_object_type.attachment_turret_plane_chaingun,
 	e_game_object_type.attachment_turret_rocket_pod,
 	e_game_object_type.attachment_hardpoint_bomb_1,
@@ -2107,18 +2151,26 @@ g_std_wing_attachments = {
 }
 
 g_std_wing_utils = {
+	-- the utility items aircraft can normally use
 	e_game_object_type.attachment_flare_launcher,
 	e_game_object_type.attachment_sonic_pulse_generator,
 	e_game_object_type.attachment_smoke_launcher_explosive,
 	e_game_object_type.attachment_smoke_launcher_stream
 }
 
--- attachment hardpoint ui overrides
-
 g_revolution_override_attachment_options = {
+	-- each [x] element is a chassis type
+	-- the value can have rows, or options or both,
+
+	-- to prevent a hardpoint being used, you need to omit it from `rows` for that unit
+	-- to limit/expand the choices for a hardpoint, you define an `options` value
+
 	[e_game_object_type.chassis_air_wing_heavy] = {
+		-- the manta here is roughly the Revoltion 1.2 Manta with some changes to
+		-- illustrate the example
 		rows = {
-			-- comment/remove a line to remove that attachment
+			-- each row shows where the hardpoint box graphic will appear for each hardpoint
+			-- in this example, there are 3 rows for the manta
 			{
 				{ i = 1, x = 0, y = -23 }, -- front camera slot
 				{ i = 9, x = 6, y = -11 }  -- internal gun
@@ -2136,18 +2188,23 @@ g_revolution_override_attachment_options = {
 			}
 		},
 		options = {
+			-- the list of attachment choices for each hardpoint on the unit
+			-- the [x] numbers here are the attachment index numbers, they
+			-- normally correspond to the i=x values above or in library_ui.lua
+
 			-- nose slot
 			[1] = {
 				e_game_object_type.attachment_camera_plane,
 				e_game_object_type.attachment_turret_gimbal_30mm,
 			},
 			-- wings
-			[2] = g_std_wing_attachments,
+			[2] = g_std_wing_attachments,  -- g_std_wing_attachments is a list defined above
 			[3] = g_std_wing_attachments,
 			[4] = g_std_wing_attachments,
 			[5] = g_std_wing_attachments,
 			-- middle
 			[6] = {
+				-- middle hardpoint limited to fuel or light/medium bombs
 				e_game_object_type.attachment_fuel_tank_plane,
 				e_game_object_type.attachment_hardpoint_bomb_1,
 				e_game_object_type.attachment_hardpoint_bomb_2,
@@ -2158,6 +2215,7 @@ g_revolution_override_attachment_options = {
 
 			-- internal gun
 			[9] = {
+				-- internal hardpoint limited to chaingun only
 				e_game_object_type.attachment_turret_plane_chaingun
 			}
 		}
