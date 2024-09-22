@@ -2173,11 +2173,11 @@ g_revolution_override_attachment_options = {
 			-- in this example, there are 3 rows for the manta
 			{
 				{ i = 1, x = 0, y = -23 }, -- front camera slot
-				{ i = 4, x = 8, y = -11 }  -- internal gun
+				{ i = 2, x = 8, y = -11 }  -- internal gun
 			},
 			{
 				{ i = 8, x = -26, y = 11 }, -- left outer
-				{ i = 2, x = -16, y = 0 }, -- left inner
+				{ i = 4, x = -16, y = 0 }, -- left inner
 				{ i = 3, x = 0, y = 0 },   -- centre
 				{ i = 5, x = 16, y = 0 },  -- right inner
 				{ i = 9, x = 26, y = 11 }   -- right outer
@@ -2198,7 +2198,7 @@ g_revolution_override_attachment_options = {
 				e_game_object_type.attachment_turret_gimbal_30mm,
 			},
 			-- left wing inner
-			[2] = g_std_wing_attachments,  -- g_std_wing_attachments is a list defined above
+			[4] = g_std_wing_attachments,  -- g_std_wing_attachments is a list defined above
 
 			-- middle
 			[3] = {
@@ -2209,7 +2209,7 @@ g_revolution_override_attachment_options = {
 			},
 
 			-- internal gun
-			[4] = {
+			[2] = {
 				-- internal hardpoint limited to chaingun only
 				e_game_object_type.attachment_turret_plane_chaingun
 			},
