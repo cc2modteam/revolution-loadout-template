@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data name="Revolution - Heavy Manta" author="Bredroll" description="
+<data name="Rev:Heavy Manta" author="Bredroll" description="
 
-[b]Requires the Revolution 1.3[/b]
+[b]Requires the Revolution 1.3+[/b]
 
 By popular demand, the Manta (re)gains use of two more wing hardpoints for bombs and missiles.
 
@@ -13,5 +13,6 @@ Fixed manta weapon options to match updated revolution 1.3 manta.
 1 Centreline hardpoint that can take fuel and bombs
 1 Internal gun option for 20mm autocannon
 
+Uses library_custom_1.lua
 ">
 </data>
