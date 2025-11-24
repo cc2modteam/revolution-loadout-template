@@ -26,6 +26,9 @@ g_std_wing_utils = {
 	e_game_object_type.attachment_smoke_launcher_stream
 }
 
+
+g_rev_aircraft_max_payload[e_game_object_type.chassis_air_wing_heavy] = 5000
+
 g_revolution_override_attachment_options = {
 	-- each [x] element is a chassis type
 	-- the value can have rows, or options or both,
@@ -74,6 +77,8 @@ g_revolution_override_attachment_options = {
 				e_game_object_type.attachment_fuel_tank_plane,
 				e_game_object_type.attachment_hardpoint_bomb_1,
 				e_game_object_type.attachment_hardpoint_bomb_2,
+                e_game_object_type.attachment_hardpoint_bomb_3,
+                e_game_object_type.attachment_turret_rocket_pod,
 			},
 
 			-- internal gun
