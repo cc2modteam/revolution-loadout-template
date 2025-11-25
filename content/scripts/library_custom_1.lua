@@ -26,8 +26,9 @@ g_std_wing_utils = {
 	e_game_object_type.attachment_smoke_launcher_stream
 }
 
-
-g_rev_aircraft_max_payload[e_game_object_type.chassis_air_wing_heavy] = 5000
+if g_rev_aircraft_max_payload then
+    g_rev_aircraft_max_payload[e_game_object_type.chassis_air_wing_heavy] = 5000
+end
 
 g_revolution_override_attachment_options = {
 	-- each [x] element is a chassis type
